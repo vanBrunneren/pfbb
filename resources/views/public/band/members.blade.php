@@ -16,6 +16,7 @@
 		@foreach($members as $member)
 			<div class="row">
 				<div class="col-2">
+					{{-- <img class="img-fluid person-image" src="{{ Storage::url($member->image) }}" /> --}}
 					<img class="img-fluid person-image" src="/images/person_placeholder.jpeg" />
 				</div>
 				<div class="col-3">
@@ -30,8 +31,8 @@
 					@else
 						<?php $output = $member->genre_name ?>
 					@endif
-					
-					@if($output != $lastoutput) 
+
+					@if($output != $lastoutput)
 						<p class="member-output">{{ $output }}</p>
 					@endif
 				</div>
@@ -43,9 +44,9 @@
 						<?php $lastgenre = $member->genre_name; ?>
 					@endif
 				</div>
-				
-			</div>	
-			
+
+			</div>
+
 			<?php $lastoutput = $output; ?>
-		@endforeach   
+		@endforeach
 @endsection

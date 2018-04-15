@@ -12,18 +12,18 @@ use App\BandGenre;
 class BandController extends Controller
 {
 
-    public function index() 
+    public function index()
     {
         return view('admin.band.index');
     }
 
-    public function history() 
+    public function history()
     {
         $historys = ContentHistory::get();
     	return view('admin.band.history.index', compact('historys'));
     }
 
-    public function historyCreate() 
+    public function historyCreate()
     {
         return view('admin.band.history.create');
     }
@@ -38,15 +38,15 @@ class BandController extends Controller
         $history->save();
 
         return redirect()->route('admin_history');
-    } 
+    }
 
-    public function historyEdit($id) 
+    public function historyEdit($id)
     {
         $history = ContentHistory::where('id', $id)->first();
         return view('admin.band.history.edit', compact('history'));
     }
 
-    public function historyEditSave(Request $request, $id) 
+    public function historyEditSave(Request $request, $id)
     {
         $history = ContentHistory::where('id', $id)->first();
         $history->title = $request->input('title');
@@ -65,11 +65,11 @@ class BandController extends Controller
         return back();
     }
 
-    
 
 
 
-    public function members() 
+
+    public function members()
     {
         $all_genres = BandGenre::all();
         $genres = array();
@@ -80,14 +80,14 @@ class BandController extends Controller
     	return view('admin.band.members.index', compact('members', 'genres'));
     }
 
-    public function membersCreate() 
+    public function membersCreate()
     {
         $genres = BandGenre::all();
         return view('admin.band.members.create', compact('genres'));
     }
 
     public function membersCreateSave(Request $request)
-    {   
+    {
         $member = new BandMember;
         $member->prename = $request->input('prename');
         $member->name = $request->input('name');
@@ -96,24 +96,31 @@ class BandController extends Controller
 
         return redirect()->route('admin_members');
 
-    } 
+    }
 
-    public function memberEdit($id) 
+    public function memberEdit($id)
     {
         $genres = BandGenre::all();
         $member = BandMember::where('id', $id)->first();
         return view('admin.band.members.edit', compact('member', 'genres'));
     }
 
-    public function memberEditSave(Request $request, $id) 
+    public function memberEditSave(Request $request, $id)
     {
         $member = BandMember::where('id', $id)->first();
         $member->prename = $request->input('prename');
         $member->name = $request->input('name');
         $member->genre = $request->input('genre');
+
+        if($request->file('file')) {
+            $file = $request->file('file');
+            $path = $file->storeAs('/member', $file->getClientOriginalName(), 'public');
+            $member->image = $path;
+        }
+
         $member->save();
 
-        return back();
+        return redirect()->route('admin_members');
     }
 
     public function memberDelete($id)
@@ -127,14 +134,14 @@ class BandController extends Controller
 
 
 
-    
 
-    public function repertoire() 
+
+    public function repertoire()
     {
     	return view('admin.band.repertoire.index');
     }
 
-    public function contact() 
+    public function contact()
     {
     	return view('admin.band.contact.index');
     }
