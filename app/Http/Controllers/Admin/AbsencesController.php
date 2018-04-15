@@ -10,10 +10,10 @@ use App\Absences;
 
 class AbsencesController extends Controller
 {
-    public function index(Request $request) 
+    public function index(Request $request)
     {
 
-    	$events = Events::all();
+    	$events = Events::where('date', '>=', date('Y-m-d 00:00:00'))->get();
         $absences = Absences::where('user_id', '=', \Auth::user()->id)->get();
 
     	if($request->isMethod('post')) {
@@ -29,9 +29,9 @@ class AbsencesController extends Controller
     					$absence = Absences::where('user_id', \Auth::user()->id)->where('event_id', $id)->first();
     					$absence->delete();
     				}
-    			
+
                 } else {
-    			
+
                 	if($request->input('absence_'.$id)) {
     					$absence = new Absences;
     					$absence->user_id = \Auth::user()->id;
@@ -39,7 +39,7 @@ class AbsencesController extends Controller
     					$absence->reason = $request->input('reason_'.$id);
     					$absence->save();
     				}
-    			
+
                 }
 
     		}
@@ -69,7 +69,7 @@ class AbsencesController extends Controller
 
     public function show()
     {
-        $events = Events::all();
+        $events = Events::where('date', '>=', date('Y-m-d 00:00:00'))->get();
         $all_events = array();
 
         foreach($events as $event) {
@@ -88,24 +88,3 @@ class AbsencesController extends Controller
     }
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

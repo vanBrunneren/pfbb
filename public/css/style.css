@@ -329,6 +329,7 @@ body,
 
 .navbar {
   background-color: #32001B;
+  z-index: 9999;
   padding-left: 0px;
 }
 
@@ -378,5 +379,91 @@ body,
 
 .press {
   padding-bottom: 20px;
+}
+
+.navbar-collapse {
+  background-color: #32001B;
+  margin-left: -15px !important;
+  margin-right: -15px !important;
+}
+
+@media (min-width: 768px) {
+  .navbar-collapse {
+    background-color: lightgray;
+    margin-left: 0px !important;
+    margin-right: 0px !important;
+  }
+}
+
+.nav-link {
+  color: white !important;
+}
+
+@media (min-width: 768px) {
+  .nav-link {
+    color: black !important;
+  }
+}
+
+.nav-item {
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  padding-left: 20px;
+}
+
+.custom-background {
+  background-color: #32001B !important;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+}
+
+@media (min-width: 768px) {
+  .custom-background {
+    background-color: lightgray !important;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+}
+
+@media (min-width: 768px) {
+  .nav-item {
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    padding-left: 15px;
+  }
+}
+
+.dropdown-menu {
+  background-color: #32001B;
+}
+
+.dropdown-item {
+  color: white;
+}
+
+@media (min-width: 768px) {
+  .dropdown-menu {
+    background-color: lightgray;
+  }
+
+  .dropdown-item {
+    color: black;
+  }
+}
+
+.dropdown-item:hover {
+  background-color: #32001B;
+  color: white;
+}
+
+@media (min-width: 768px) {
+  .dropdown-item:hover {
+    background-color: lightgray;
+    color: black;
+  }
 }
 

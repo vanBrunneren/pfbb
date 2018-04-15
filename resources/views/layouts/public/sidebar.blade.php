@@ -21,7 +21,7 @@
 					  		<a class="nav-link" href="/">Home</a>
 						</li>
 						<li class="nav-item dropdown">
-							<a class="nav-link dropdown-toggle" href="/band/geschichte">Band</a>
+							<a class="nav-link dropdown-toggle">Band</a>
 					  		<div class="dropdown-menu">
 								<a class="dropdown-item" href="/band/geschichte">Geschichte</a>
 								<a class="dropdown-item" href="/band/mitglieder">Mitglieder</a>
@@ -30,7 +30,7 @@
 							</div>
 						</li>
 						<li class="nav-item dropdown" >
-							<a class="nav-link dropdown-toggle" href="/events">Events</a>
+							<a class="nav-link dropdown-toggle">Events</a>
 					  		<div class="dropdown-menu">
 								<a class="dropdown-item" href="/events">Gigs 2018</a>
 								<a class="dropdown-item" href="/events/2017">Gigs 2017</a>
@@ -38,7 +38,7 @@
 							</div>
 						</li>
 						<li class="nav-item dropdown">
-							<a class="nav-link dropdown-toggle" href="/galerie">Galerie</a>
+							<a class="nav-link dropdown-toggle">Galerie</a>
 					  		<div class="dropdown-menu">
 								<a class="dropdown-item" href="/galerie/fotos">Fotos</a>
 								<a class="dropdown-item" href="/galerie/videos">Videos</a>

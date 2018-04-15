@@ -19,7 +19,7 @@
 
         <div class="row">
 
-            <div class="offset-md-3 col-6">
+            <div class="offset-md-3 col-12 col-md-6">
 
                 <form method="POST" action="{{ route('login') }}">
 

@@ -27,6 +27,12 @@ $(function() {
 
 	});
 
+	$('.nav-item').hover(function(){
+	  $(this).toggleClass('custom-background');
+	});
 
+	$('.nav-item').click(function(){
+		$(this).find('.dropdown-menu').toggleClass('show');
+	});
 
 });
