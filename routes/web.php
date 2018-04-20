@@ -41,7 +41,10 @@ Route::middleware('auth')->group(function () {
 	Route::get('/admin/home/index', 'Admin\HomeController@index')->name('admin_home');
 	Route::get('/admin/logout', 'Admin\HomeController@logout')->name('admin_logout');
 
-	Route::group(['middleware' => 'roles', 'roles' => ['user', 'editor', 'root']], function() {
+	Route::get('/admin/changepassword','Admin\UserController@showChangePasswordForm');
+	Route::post('/admin/changepassword','Admin\UserController@changePassword')->name('changepassword');
+
+	Route::group(['middleware' => 'roles', 'roles' => ['user', 'editor', 'root', 'calendar_admin']], function() {
 
 		Route::redirect('/admin/absenzen', '/admin/absenzen/index', 301);
 		Route::get('/admin/absenzen/index', 'Admin\AbsencesController@index')->name('admin_absences');
@@ -50,6 +53,17 @@ Route::middleware('auth')->group(function () {
 		Route::redirect('/admin/user', '/admin/user/index', 301);
 		Route::get('/admin/user/index', 'Admin\UserController@index')->name('admin_user');
 
+	});
+
+	Route::group(['middleware' => 'roles', 'roles' => ['root', 'calendar_admin', 'editor']], function() {
+		Route::redirect('/admin/events', '/admin/events/index', 301);
+		Route::get('/admin/events/index', 'Admin\EventsController@index')->name('admin_events');
+		Route::get('/admin/events/edit/{id}', 'Admin\EventsController@edit')->name('admin_events_edit');
+		Route::post('/admin/events/edit/{id}', 'Admin\EventsController@edit');
+		Route::get('/admin/events/delete/{id}', 'Admin\EventsController@delete')->name('admin_events_delete');
+		Route::get('/admin/events/create', 'Admin\EventsController@create')->name('admin_events_create');
+		Route::post('/admin/events/create', 'Admin\EventsController@create');
+		Route::post('/admin/events/multisave', 'Admin\EventsController@multisave')->name('admin_events_multisave');
 	});
 
 	Route::group(['middleware' => 'roles', 'roles' => ['editor', 'root']], function() {
@@ -61,15 +75,6 @@ Route::middleware('auth')->group(function () {
 		Route::get('/admin/band/mitglieder/index', 'Admin\BandController@members')->name('admin_members');
 		Route::get('/admin/band/repertoire/index', 'Admin\BandController@repertoire')->name('admin_repertoire');
 		Route::get('/admin/band/kontakt/index', 'Admin\BandController@contact')->name('admin_contact');
-
-		Route::redirect('/admin/events', '/admin/events/index', 301);
-		Route::get('/admin/events/index', 'Admin\EventsController@index')->name('admin_events');
-		Route::get('/admin/events/edit/{id}', 'Admin\EventsController@edit')->name('admin_events_edit');
-		Route::post('/admin/events/edit/{id}', 'Admin\EventsController@edit');
-		Route::get('/admin/events/delete/{id}', 'Admin\EventsController@delete')->name('admin_events_delete');
-		Route::get('/admin/events/create', 'Admin\EventsController@create')->name('admin_events_create');
-		Route::post('/admin/events/create', 'Admin\EventsController@create');
-		Route::post('/admin/events/multisave', 'Admin\EventsController@multisave')->name('admin_events_multisave');
 
 		Route::get('/admin/band', 'Admin\BandController@index')->name('admin_band');
 		Route::redirect('/admin/band/geschichte', '/admin/band/geschichte/index', 301);
@@ -143,9 +148,6 @@ Route::middleware('auth')->group(function () {
 		Route::get('/admin/presse/create', 'Admin\PresseController@create')->name('admin_presse_create');
 		Route::post('/admin/presse/create', 'Admin\PresseController@create')->name('admin_presse_create');
 		Route::get('/admin/presse/delete/{id}', 'Admin\PresseController@delete')->name('admin_presse_delete');
-
-		Route::get('/admin/changepassword','Admin\UserController@showChangePasswordForm');
-		Route::post('/admin/changepassword','Admin\UserController@changePassword')->name('changepassword');
 
 	});
 

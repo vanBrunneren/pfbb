@@ -7,17 +7,23 @@
             <div class="panel panel-default">
                 <div class="panel-body">
                     @if(Auth::user()->hasRole('editor') || Auth::user()->hasRole('root'))
-{{--                    Home<br>
+                    {{--
+                    Home<br>
                     <a href="{{ route('admin_home') }}">Home</a><br>
-                    <hr>--}}
+                    <hr>
+                    --}}
                     Band<br>
                     <a href="{{ route('admin_history') }}">Geschichte</a>
                     <a href="{{ route('admin_members') }}">Mitglieder</a>
                     <a href="{{ route('admin_repertoire') }}">Repertoire</a>
                     <hr>
+                    @endif
+                    @if(Auth::user()->hasRole('editor') || Auth::user()->hasRole('root') || Auth::user()->hasRole('calendar_admin'))
                     Events<br>
                     <a href="{{ route('admin_events') }}">Events</a>
                     <hr>
+                    @endif
+                    @if(Auth::user()->hasRole('editor') || Auth::user()->hasRole('root'))
                     Galerie<br>
                     <a href="{{ route('admin_gallery_images_albums') }}">Fotos</a>
                     <a href="{{ route('admin_videos') }}">Videos</a>

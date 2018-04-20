@@ -18,7 +18,7 @@ class EventsController extends Controller
     public function create(Request $request)
     {
     	$event = new Events;
-    
+
     	if($request->isMethod('post')) {
 
     		$event->name = $request->input('name');
@@ -27,9 +27,12 @@ class EventsController extends Controller
             if($request->input('public') == "on") {
             	$event->isExtern = true;
             }
-            $event->save();
 
-    		return redirect(route('admin_events'));
+            if($event->name && $event->location && $event->date) {
+                $event->save();
+
+        		return redirect(route('admin_events'));
+            }
 
     	}
 
@@ -66,12 +69,12 @@ class EventsController extends Controller
     	return back();
     }
 
-    public function multisave(Request $request) 
+    public function multisave(Request $request)
     {
         if(date("Y-m-d") < date("Y-m-d", strtotime($request->input('multisave_date')))) {
             $end_date = date("Y-m-d", strtotime($request->input('multisave_date')));
-            
-            $today = new \DateTime(date("y-m-d"));            
+
+            $today = new \DateTime(date("y-m-d"));
             if($today->format("w") == 5) {
                 $start_date = $today;
             } else {
@@ -99,7 +102,7 @@ class EventsController extends Controller
                     $event->save();
 
                 }
-                
+
                 $new_date = $new_date->add(new \DateInterval('P7D'));
 
             }
@@ -110,21 +113,3 @@ class EventsController extends Controller
     }
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

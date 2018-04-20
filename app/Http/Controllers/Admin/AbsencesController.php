@@ -7,13 +7,14 @@ use App\Http\Controllers\Controller;
 
 use App\Events;
 use App\Absences;
+use Auth;
 
 class AbsencesController extends Controller
 {
     public function index(Request $request)
     {
 
-    	$events = Events::where('date', '>=', date('Y-m-d 00:00:00'))->get();
+    	$events = Events::where('date', '>=', date('Y-m-d 00:00:00'))->orderBy('date')->get();
         $absences = Absences::where('user_id', '=', \Auth::user()->id)->get();
 
     	if($request->isMethod('post')) {
@@ -44,6 +45,27 @@ class AbsencesController extends Controller
 
     		}
 
+            $user_absences = Absences::
+                                join('events', 'events.id', '=', 'user_to_events.event_id')
+                                ->where('user_id', '=', Auth::user()->id)
+                                ->get();
+
+            $message = "".Auth::user()->prename." ".Auth::user()->name." hat seine Absenzen geändert.<br><br>Die Absenzen sind:<br>";
+
+            foreach($user_absences as $abs) {
+                $message .= date('d.m.Y', strtotime($abs->date)) . " " . $abs->name . " " . $abs->reason . "<br>";
+            }
+
+            $header = array(
+                'From' => 'PigFarmers Abmeldung <noreplay@pigfarmers.ch>',
+                'Reply-To' => 'admin@pigfarmers.ch',
+                'X-Mailer' => 'PHP/' . phpversion(),
+                'Content-Type' => 'text/html; charset=UTF-8'
+            );
+
+            mail('pascal.brunner@gmx.ch', "Abmeldung PigFarmers", $message, $header);
+            mail('studer@slp.ch', "Abmeldung PigFarmers", $message, $header);
+
             return redirect('admin/absenzen/index');
 
     	}
@@ -69,7 +91,7 @@ class AbsencesController extends Controller
 
     public function show()
     {
-        $events = Events::where('date', '>=', date('Y-m-d 00:00:00'))->get();
+        $events = Events::where('date', '>=', date('Y-m-d 00:00:00'))->orderBy('date')->get();
         $all_events = array();
 
         foreach($events as $event) {

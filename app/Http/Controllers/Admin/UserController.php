@@ -15,7 +15,10 @@ class UserController extends Controller
     public function index()
     {
 
-    	$users = User::get()->where('entry_status', 'public');
+    	$users = User::where('entry_status', 'public')
+                        ->where('id', '<>', 3)
+                        ->orderBy('name')
+                        ->get();
         $roles = Role::get()->where('entry_status', 'public');
     	return view('admin.user.index', compact('users', 'roles'));
 
@@ -40,12 +43,6 @@ class UserController extends Controller
             $user->entry_status = 'public';
 
             if(
-                $user->prename &&
-                $user->name &&
-                $user->street_name &&
-                $user->plz &&
-                $user->city &&
-                $user->mobile &&
                 $user->email &&
                 $user->password
             ) {
@@ -53,8 +50,10 @@ class UserController extends Controller
                 $user->save();
 
                 $user->roles()->detach();
-                foreach($request->input('roles') as $role) {
-                    $user->roles()->attach($role);
+                if($request->input('roles')) {
+                    foreach($request->input('roles') as $role) {
+                        $user->roles()->attach($role);
+                    }
                 }
 
                 return redirect(route('admin_user'));

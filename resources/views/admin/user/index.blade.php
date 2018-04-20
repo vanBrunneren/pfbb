@@ -20,8 +20,7 @@
 					<tr>
 						<th>Vorname</th>
 						<th>Name</th>
-						<th>Strasse</th>
-						<th>Nr.</th>
+						<th>Strasse / Nr.</th>
 						<th>PLZ</th>
 						<th>Ort</th>
 						<th>Mobile</th>
@@ -31,19 +30,18 @@
 						@endif
 					</tr>
 				</thead>
-				<tbody>				
+				<tbody>
 					@foreach($users as $user)
 						<tr>
 							<td>{{ $user->prename }}</td>
 							<td>{{ $user->name }}</td>
-							<td>{{ $user->street_name }}</td>
-							<td>{{ $user->street_number }}</td>
+							<td>{{ $user->street_name . " " . $user->street_number}}</td>
 							<td>{{ $user->plz }}</td>
 							<td>{{ $user->city }}</td>
-							<td>{{ $user->mobile }}</td>
+							<td style="width: 20%">{{ $user->mobile }}</td>
 							<td>{{ $user->email }}</td>
 							@if(Auth::user()->hasRole('editor') || Auth::user()->hasRole('root'))
-								<td class="list-icon-container">
+								<td class="list-icon-container" style="width: 10%">
 									<a class="list-icon" href="{{ route('admin_user_edit', $user->id) }}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
 									<a class="list-icon" href="{{ route('admin_user_delete', $user->id) }}"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
 								</td>
