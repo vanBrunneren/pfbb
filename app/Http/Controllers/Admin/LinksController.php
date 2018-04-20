@@ -18,7 +18,7 @@ class LinksController extends Controller
 	public function create(Request $request)
 	{
 
-		if($request->isMethod('post')) {
+		if($request->isMethod('post') && $request->input('title') && $request->input('link')) {
 
 			$link = new Links();
 			$link->title = $request->input('title');

@@ -31,6 +31,7 @@
                     <a href="{{ route('admin_absences') }}">Absenz erfassen</a>
                     <a href="{{ route('admin_absences_show') }}">Absenz Liste anzeigen</a>
                     <a href="{{ route('admin_user') }}">Mitgliederliste anzeigen</a>
+                    <a href="/admin/changepassword">Passwort ändern</a>
                 </div>
             </div>
         </div>

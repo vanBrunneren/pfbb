@@ -144,6 +144,9 @@ Route::middleware('auth')->group(function () {
 		Route::post('/admin/presse/create', 'Admin\PresseController@create')->name('admin_presse_create');
 		Route::get('/admin/presse/delete/{id}', 'Admin\PresseController@delete')->name('admin_presse_delete');
 
+		Route::get('/admin/changepassword','Admin\UserController@showChangePasswordForm');
+		Route::post('/admin/changepassword','Admin\UserController@changePassword')->name('changepassword');
+
 	});
 
 });

@@ -8,10 +8,11 @@ use App\Http\Controllers\Controller;
 use App\User;
 use App\Role;
 use Hash;
+use Auth;
 
 class UserController extends Controller
 {
-    public function index() 
+    public function index()
     {
 
     	$users = User::get()->where('entry_status', 'public');
@@ -20,7 +21,7 @@ class UserController extends Controller
 
     }
 
-    public function create(Request $request) 
+    public function create(Request $request)
     {
         $roles = Role::get()->where('entry_status', 'public');
         $user = new User;
@@ -48,7 +49,7 @@ class UserController extends Controller
                 $user->email &&
                 $user->password
             ) {
-                
+
                 $user->save();
 
                 $user->roles()->detach();
@@ -64,11 +65,11 @@ class UserController extends Controller
         return view('admin.user.create', compact('roles', 'user'));
     }
 
-    public function edit(Request $request, $id) 
+    public function edit(Request $request, $id)
     {
         $user = User::get()->where('id', $id)->first();
         $roles = Role::get()->where('entry_status', 'public');
-    
+
         if($request->isMethod('post')) {
             $user->prename = $request->input('prename');
             $user->name = $request->input('name');
@@ -94,7 +95,7 @@ class UserController extends Controller
         return view('admin.user.edit', compact('user', 'roles'));
     }
 
-    public function delete(Request $request, $id) 
+    public function delete(Request $request, $id)
     {
         $user = User::get()->where('id', $id)->first();
         $user->entry_status = 'deleted';
@@ -113,6 +114,38 @@ class UserController extends Controller
         } else {
             $user->roles()->attach($role->id);
         }
+
+    }
+
+    public function showChangePasswordForm()
+    {
+        return view('admin.user.changepassword');
+    }
+
+    public function changePassword(Request $request)
+    {
+
+        if (!(Hash::check($request->get('current-password'), Auth::user()->password))) {
+            // The passwords matches
+            return redirect()->back()->with("error","Dein aktuelles Passwort entspricht nicht der Eingabe. Bitte versuche es noch einmal.");
+        }
+
+        if(strcmp($request->get('current-password'), $request->get('new-password')) == 0){
+            //Current password and new password are same
+            return redirect()->back()->with("error","Dein neues Passwort kann nicht gleich sein wie dein altes Passwort. Bitte verwende ein anderes Passwort.");
+        }
+
+        $validatedData = $request->validate([
+            'current-password' => 'required',
+            'new-password' => 'required|string|min:6|confirmed',
+        ]);
+
+        //Change Password
+        $user = Auth::user();
+        $user->password = bcrypt($request->get('new-password'));
+        $user->save();
+
+        return redirect()->back()->with("success","Dein Passwort wurde erfolgreich geändert!");
 
     }
 

@@ -52,6 +52,7 @@
 								<a class="dropdown-item" href="/admin/user/index">Mitglieder</a>
 								<a class="dropdown-item" href="/admin/absenzen/index">Absenzen erfassen</a>
 								<a class="dropdown-item" href="/admin/absenzen/show">Absenzen anzeigen</a>
+								<a class="dropdown-item" href="/admin/changepassword">Passwort ändern</a>
 								@if(Auth::user()->hasRole('editor') || Auth::user()->hasRole('root'))
 									<a class="dropdown-item" href="/admin/band">Band</a>
 									<a class="dropdown-item" href="/admin/repertoire/index">Repertoire</a>
