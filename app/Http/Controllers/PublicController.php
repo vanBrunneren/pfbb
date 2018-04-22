@@ -38,6 +38,7 @@ class PublicController extends Controller
         $members = BandMember::select('*', 'band_genres.name as genre_name', 'band_members.name as name')
             ->where('entry_status', 'public')
             ->join('band_genres', 'band_genres.id', '=', 'band_members.genre')
+            ->orderBy('band_genres.id')
             ->get();
 
     	return view('public.band.members', compact('members', 'genres'));

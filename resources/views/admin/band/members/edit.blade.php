@@ -22,6 +22,10 @@
 					<input type="text" class="form-control" id="name" name="name" value="{{ $member->name }}">
 				</div>
 				<div class="form-group">
+					<label for="name">Zusatztext</label>
+					<input type="text" class="form-control" id="additional" name="additional" value="{{ $member->additional }}">
+				</div>
+				<div class="form-group">
 					<label for="historyText">Instrument</label>
 					<select class="custom-select" name="genre">
 						@foreach($genres as $genre)

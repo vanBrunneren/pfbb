@@ -92,6 +92,13 @@ class BandController extends Controller
         $member->prename = $request->input('prename');
         $member->name = $request->input('name');
         $member->genre = $request->input('genre');
+        $member->additional = $request->input('additional');
+        
+        if($request->file('file')) {
+            $file = $request->file('file');
+            $path = $file->storeAs('/member', $file->getClientOriginalName(), 'public');
+            $member->image = $path;
+        }
         $member->save();
 
         return redirect()->route('admin_members');
@@ -111,6 +118,7 @@ class BandController extends Controller
         $member->prename = $request->input('prename');
         $member->name = $request->input('name');
         $member->genre = $request->input('genre');
+        $member->additional = $request->input('additional');
 
         if($request->file('file')) {
             $file = $request->file('file');

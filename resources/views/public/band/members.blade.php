@@ -16,13 +16,16 @@
 		@foreach($members as $member)
 			<div class="row">
 				<div class="col-2">
-					{{-- <img class="img-fluid person-image" src="{{ Storage::url($member->image) }}" /> --}}
-					<img class="img-fluid person-image" src="/images/person_placeholder.jpeg" />
+					@if($member->image)
+						<img class="img-fluid person-image" src="{{ Storage::url($member->image) }}" />
+					@else
+						<img class="img-fluid person-image" src="/images/person_placeholder.jpeg" />
+					@endif
 				</div>
 				<div class="col-3">
 					<p class="member-output">{{ $member->prename . " " . $member->name}}</p>
 					<p class="member-description">
-						Die PFBB ...
+						{{ $member->additional }}
 					</p>
 				</div>
 				<div class="col-3">
