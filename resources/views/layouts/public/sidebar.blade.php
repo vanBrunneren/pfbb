@@ -34,7 +34,6 @@
 					  		<div class="dropdown-menu">
 								<a class="dropdown-item" href="/events">Gigs 2018</a>
 								<a class="dropdown-item" href="/events/2017">Gigs 2017</a>
-								<a class="dropdown-item" href="/events/2016">Gigs bis 2016</a>
 							</div>
 						</li>
 						<li class="nav-item dropdown">

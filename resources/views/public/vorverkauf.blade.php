@@ -1,7 +1,8 @@
 @extends('layouts.public.app')
 @section('title', 'Vorverkauf')
 @section('content')
-<form>
+<form action="" method="POST">
+	{{ csrf_field() }}
 	<div class="container content-container">
         <div class="row">
             <div class="col-12 vorverkauf-header">
@@ -70,7 +71,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-4"> 
+            <div class="col-4">
                 Vorverkauf:
             </div>
             <div class="col-8">
@@ -96,24 +97,24 @@
         	<div class="col-12">
         		<div class="form-group">
 	        		<div class="form-inline">
-	        			<input type="text" class="form-control" id="inputAdults" placeholder="Anzahl">
+	        			<input type="text" class="form-control" name="inputAdults" id="inputAdults" placeholder="Anzahl">
 						<label class="form-label" for="inputAdults">
 							&nbsp;Tickets à CHF 30.00 (Erwachsene)
 						</label>
 					</div>
-				</div>    		
+				</div>
         	</div>
         </div>
         <div class="row">
         	<div class="col-12">
         		<div class="form-group">
 	        		<div class="form-inline">
-	        			<input type="text" class="form-control" id="inputChildren" placeholder="Anzahl">
+	        			<input type="text" class="form-control" name="inputChildren" id="inputChildren" placeholder="Anzahl">
 						<label class="form-label" for="inputChildren">
 							&nbsp;Tickets à CHF 15.00 (Jugendliche bis vor dem 16. Geburtstag, Ausweispflicht)
 						</label>
 					</div>
-				</div>   		
+				</div>
         	</div>
         </div>
         <div class="row">
@@ -142,7 +143,7 @@
         	<div class="col-12">
         		<div class="form-group">
 					<label for="inputName">Name</label>
-					<input type="text" class="form-control" id="inputName" placeholder="Name">
+					<input type="text" class="form-control" id="inputName" name="inputName" placeholder="Name">
 				</div>
         	</div>
         </div>
@@ -150,7 +151,7 @@
         	<div class="col-12">
         		<div class="form-group">
 					<label for="inputPrename">Vorname</label>
-					<input type="text" class="form-control" id="inputPrename" placeholder="Vorname">
+					<input type="text" class="form-control" id="inputPrename" name="inputPrename" placeholder="Vorname">
 				</div>
         	</div>
         </div>
@@ -158,7 +159,7 @@
         	<div class="col-12">
         		<div class="form-group">
 					<label for="inputStreet">Strasse</label>
-					<input type="text" class="form-control" id="inputStreet" placeholder="Strasse">
+					<input type="text" class="form-control" id="inputStreet" name="inputStreet" placeholder="Strasse">
 				</div>
         	</div>
         </div>
@@ -167,11 +168,11 @@
         		<div class="form-row">
         			<div class="form-group col-md-4">
 				     	<label for="inputPLZ">PLZ</label>
-				      	<input type="text" class="form-control" id="inputPLZ" placeholder="PLZ">
+				      	<input type="text" class="form-control" id="inputPLZ" name="inputPLZ" placeholder="PLZ">
 				    </div>
         			<div class="form-group col-md-8">
 				     	<label for="inputCity">Ort</label>
-				      	<input type="text" class="form-control" id="inputCity" placeholder="Ort">
+				      	<input type="text" class="form-control" id="inputCity" name="inputCity" placeholder="Ort">
 				    </div>
         		</div>
         	</div>
@@ -180,7 +181,7 @@
         	<div class="col-12">
         		<div class="form-group">
 					<label for="inputPhone">Telefonnummer</label>
-					<input type="text" class="form-control" id="inputPhone" placeholder="Telefonnummer">
+					<input type="text" class="form-control" id="inputPhone" name="inputPhone" placeholder="Telefonnummer">
 				</div>
         	</div>
         </div>
@@ -188,7 +189,7 @@
         	<div class="col-12">
         		<div class="form-group">
 					<label for="inputEmail">E-Mail</label>
-					<input type="text" class="form-control" id="inputEmail" placeholder="E-Mail Adresse">
+					<input type="text" class="form-control" id="inputEmail" name="inputEmail" placeholder="E-Mail Adresse">
 				</div>
         	</div>
         </div>
@@ -196,40 +197,15 @@
         	<div class="col-12">
         		<div class="form-group">
 					<label for="inputBemerkungen">Bemerkungen</label>
-					<textarea class="form-control" id="inputBemerkungen" rows="6"></textarea>
+					<textarea class="form-control" id="inputBemerkungen" name="inputBemerkungen" rows="6"></textarea>
 				</div>
         	</div>
         </div>
         <div class="row">
         	<div class="col-12">
-        		<button type="button" class="btn btn-primary">Absenden</button>
+        		<button type="submit" class="btn btn-primary">Absenden</button>
         	</div>
         </div>
-	</div>  
-</form> 
+	</div>
+</form>
 @endsection
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

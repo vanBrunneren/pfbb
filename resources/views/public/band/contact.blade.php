@@ -35,7 +35,7 @@
 		<div class="row contact-form-container">
 			<div class="col-12">
 				<h4>Kontaktformular</h4>
-				<form>
+				<form action="" method="POST">
 					<div class="form-group">
 						<label for="sexInput">Anrede</label><br>
 						<div class="form-check form-check-inline">
@@ -50,28 +50,28 @@
 						</div>
 					</div>
 					<div class="form-group">
-					    <label for="formGroupExampleInput">Vorname*</label>
-					    <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Vorname">
+					    <label for="prename">Vorname*</label>
+					    <input type="text" class="form-control" name="prename" id="prename" placeholder="Vorname">
 					</div>
 					<div class="form-group">
-					    <label for="formGroupExampleInput">Name*</label>
-					    <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Name">
+					    <label for="name">Name*</label>
+					    <input type="text" class="form-control" name="name" id="name" placeholder="Name">
 					</div>
 					<div class="form-group">
-					    <label for="formGroupExampleInput">Telefon</label>
-					    <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Telefon">
+					    <label for="phone">Telefon</label>
+					    <input type="text" class="form-control" name="phone" id="phone" placeholder="Telefon">
 					</div>
 					<div class="form-group">
-					    <label for="formGroupExampleInput">E-Mail*</label>
-					    <input type="text" class="form-control" id="formGroupExampleInput" placeholder="E-Mail">
+					    <label for="email">E-Mail*</label>
+					    <input type="text" class="form-control" name="email" id="email" placeholder="E-Mail">
 					</div>
 					<div class="form-group">
-						<label for="exampleTextarea">Nachricht*</label>
-						<textarea class="form-control" id="exampleTextarea" rows="8"></textarea>
+						<label for="message">Nachricht*</label>
+						<textarea class="form-control" id="message" name="message" rows="8"></textarea>
 						* Pflichtfelder
 					</div>
 					<div class="form-group">
-						<button type="button" class="btn btn-primary">Absenden</button>
+						<button type="submit" class="btn btn-primary">Absenden</button>
 					</div>
 				</form>
 			</div>

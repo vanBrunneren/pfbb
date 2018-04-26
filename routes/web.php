@@ -13,13 +13,14 @@
 
 Auth::routes();
 
-Route::get('/', 'PublicController@home');
+Route::get('/', 'PublicController@home')->name('home');
 
 Route::redirect('/band', '/band/geschichte', 301);
 Route::get('/band/geschichte', 'PublicController@history')->name('history');
 Route::get('/band/mitglieder', 'PublicController@members')->name('members');
 Route::get('/band/repertoire', 'PublicController@repertoire')->name('repertoire');
 Route::get('/band/kontakt', 'PublicController@contact')->name('contact');
+Route::post('/band/kontakt', 'PublicController@contactSave');
 
 Route::get('/events/{year?}', 'PublicController@events');
 
@@ -30,6 +31,7 @@ Route::get('/galerie/videos', 'PublicController@videos')->name('videos');
 Route::get('/galerie/presse', 'PublicController@press')->name('press');
 
 Route::get('/vorverkauf', 'PublicController@vorverkauf')->name('vorverkauf');
+Route::post('/vorverkauf', 'PublicController@vorverkaufSend')->name('vorverkauf_send');
 
 Route::get('/links', 'PublicController@links')->name('links');
 Route::redirect('/intern', '/login');

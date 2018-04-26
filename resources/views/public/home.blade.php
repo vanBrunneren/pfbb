@@ -12,7 +12,7 @@
             <h3 class="home-subtitle">Nächste Events</h3>
             @foreach($events as $event)
                 {{ date('d.m.Y', strtotime($event->date)) . ' - ' . $event->name . ' ' . $event->location }}
-                @if($event->name == 'onStage')
+                @if($event->id == 21)
                     <a href="/vorverkauf">
                         <button type="button" class="btn btn-secondary btn-sm">Zum Vorverkauf</button>
                     </a>

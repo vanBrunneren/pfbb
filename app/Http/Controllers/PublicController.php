@@ -103,4 +103,72 @@ class PublicController extends Controller
         return view('public.vorverkauf');
     }
 
+    public function vorverkaufSend(Request $request)
+    {
+        if($request->input('inputAdults') || $request->input('inputChildren')) {
+
+                if($request->input('inputEmail')) {
+
+                    $message = "Name: \t".$request->input('inputName') . "<br>";
+                    $message .= "Vorname: \t".$request->input('inputPrename') . "<br>";
+                    $message .= "Strasse / Nr: \t".$request->input('inputStreet') . "<br>";
+                    $message .= "PLZ / Ort: \t".$request->input('inputPLZ') . " " . $request->input('inputCity') . "<br>";
+                    $message .= "Tel.: \t".$request->input('inputPhone') . "<br>";
+                    $message .= "Mail: \t".$request->input('inputEmail') . "<br>";
+                    $message .= "Tickets Erwachsene: \t".$request->input('inputAdults') . "<br>";
+                    $message .= "Tickets Jugendliche: \t".$request->input('inputChildren') . "<br>";
+                    $message .= "Platz im Saal: \t". ($request->input('exampleRadios') == "option1" ? "Vorne" : "Hinten") . "<br>";
+                    $message .= "Bemerkung: \t".$request->input('inputBemerkungen') . "<br>";
+
+                    $header = array(
+                        'From' => 'PigFarmers on Stage <admin@pigfarmers.ch>',
+                        'Reply-To' => 'admin@pigfarmers.ch',
+                        'X-Mailer' => 'PHP/' . phpversion(),
+                        'Content-Type' => 'text/html; charset=UTF-8'
+                    );
+
+                    mail('pascal.brunner@gmx.ch', "PigFarmers on Stage", $message, $header);
+                    mail('studer@slp.ch', "Abmeldung PigFarmers", $message, $header);
+
+
+                    $new_message = "Vielen Dank für Ihre Reservierung, diese wurde wie folgt an uns gesendet: <br><br>".$message;
+                    mail($request->input('inputEmail'), "PigFarmers on Stage Reservierung", $new_message, $header);
+
+                    return redirect(route('home'));
+
+                }
+
+        }
+
+        return back();
+
+    }
+
+    public function contactSave(Request $request)
+    {
+
+        if($request->input('email') && $request->input('message')) {
+
+            $message = "Name: \t".$request->input('name') . "<br>";
+            $message .= "Vorname: \t".$request->input('prename') . "<br>";
+            $message .= "Tel.: \t".$request->input('phone') . "<br>";
+            $message .= "Mail: \t".$request->input('email') . "<br>";
+            $message .= "Nachricht: \t".$request->input('message') . "<br>";
+
+            $header = array(
+                'From' => 'PigFarmers on Stage <admin@pigfarmers.ch>',
+                'Reply-To' => 'admin@pigfarmers.ch',
+                'X-Mailer' => 'PHP/' . phpversion(),
+                'Content-Type' => 'text/html; charset=UTF-8'
+            );
+
+            mail('pascal.brunner@gmx.ch', "PigFarmers Kontaktformular", $message, $header);
+            //mail('studer@slp.ch', "Abmeldung PigFarmers", $message, $header);
+
+        }
+
+        return redirect(route('home'));
+
+    }
+
 }

@@ -22,13 +22,13 @@
 						<img class="img-fluid person-image" src="/images/person_placeholder.jpeg" />
 					@endif
 				</div>
-				<div class="col-3">
+				<div class="col-6">
 					<p class="member-output">{{ $member->prename . " " . $member->name}}</p>
 					<p class="member-description">
 						{{ $member->additional }}
 					</p>
 				</div>
-				<div class="col-3">
+				<div class="col-2">
 					@if($member->parent)
 						<?php $output = $genres[$member->parent]; ?>
 					@else
@@ -39,7 +39,7 @@
 						<p class="member-output">{{ $output }}</p>
 					@endif
 				</div>
-				<div class="col-4">
+				<div class="col-2">
 					@if($member->parent)
 						@if($lastgenre != $member->genre_name)
 							<p class="member-output">{{ $member->genre_name }}</p>
