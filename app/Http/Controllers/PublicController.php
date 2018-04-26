@@ -156,14 +156,14 @@ class PublicController extends Controller
             $message .= "Nachricht: \t".$request->input('message') . "<br>";
 
             $header = array(
-                'From' => 'PigFarmers on Stage <admin@pigfarmers.ch>',
+                'From' => 'PigFarmers Kontaktformular <admin@pigfarmers.ch>',
                 'Reply-To' => 'admin@pigfarmers.ch',
                 'X-Mailer' => 'PHP/' . phpversion(),
                 'Content-Type' => 'text/html; charset=UTF-8'
             );
 
-            mail('pascal.brunner@gmx.ch', "PigFarmers Kontaktformular", $message, $header);
-            //mail('studer@slp.ch', "Abmeldung PigFarmers", $message, $header);
+            //mail('pascal.brunner@gmx.ch', "PigFarmers Kontaktformular", $message, $header);
+            mail('studer@slp.ch', "Abmeldung PigFarmers", $message, $header);
 
         }
 

@@ -36,6 +36,7 @@
 			<div class="col-12">
 				<h4>Kontaktformular</h4>
 				<form action="" method="POST">
+					{{ csrf_field() }}
 					<div class="form-group">
 						<label for="sexInput">Anrede</label><br>
 						<div class="form-check form-check-inline">
