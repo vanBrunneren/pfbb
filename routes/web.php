@@ -30,8 +30,8 @@ Route::get('/galerie/fotos/{album}', 'PublicController@detailPicture');
 Route::get('/galerie/videos', 'PublicController@videos')->name('videos');
 Route::get('/galerie/presse', 'PublicController@press')->name('press');
 
-Route::get('/vorverkauf', 'PublicController@vorverkauf')->name('vorverkauf');
-Route::post('/vorverkauf', 'PublicController@vorverkaufSend')->name('vorverkauf_send');
+//Route::get('/vorverkauf', 'PublicController@vorverkauf')->name('vorverkauf');
+//Route::post('/vorverkauf', 'PublicController@vorverkaufSend')->name('vorverkauf_send');
 
 Route::get('/links', 'PublicController@links')->name('links');
 Route::redirect('/intern', '/login');

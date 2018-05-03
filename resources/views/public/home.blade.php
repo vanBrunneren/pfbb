@@ -13,10 +13,20 @@
             @foreach($events as $event)
                 {{ date('d.m.Y', strtotime($event->date)) . ' - ' . $event->name . ' ' . $event->location }}
                 @if($event->id == 21)
+                    <p style="color: red; padding: 0px; margin: 0px;">Ausverkauft!<br>
+                    Weitere Auskünfte unter:<br>
+                    062 836 40 50
+                    </p>
+                @endif
+            <?php
+            /*
+                @if($event->id == 21)
                     <a href="/vorverkauf">
                         <button type="button" class="btn btn-secondary btn-sm">Zum Vorverkauf</button>
                     </a>
                 @endif
+            */
+            ?>
                 <hr>
             @endforeach
             <div class="button-container">
