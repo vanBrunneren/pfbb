@@ -17,19 +17,22 @@
 						</thead>
 						<tbody>
 							{{ csrf_field() }}
+							<?php
+								$weekdays = array('So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa');
+							?>
 							@foreach($all_events as $event)
 								<tr>
 									<td class="absences-row"><p>{{ $event['event']->name }}</p></td>
 									<td class="absences-row"><p>{{ $event['event']->location }}</p></td>
 									<td class="absences-row"><p>{{ date('H:i', strtotime($event['event']->date)) }}</p></td>
-									<td class="absences-row"><p>{{ date('d.m.Y', strtotime($event['event']->date)) }}</p></td>
+									<td class="absences-row"><p>{{ $weekdays[date('w', strtotime($event['event']->date))] }} {{ date('d.m.Y', strtotime($event['event']->date)) }}</p></td>
 									<td>
 										<div class="input-group mb-3">
 											<div class="input-group-prepend">
 												<div class="input-group-text">
 													<input type="hidden" name="id[]" value="{{ $event['event']->id }}" />
 													<input type="hidden" name="absence_{{ $event['event']->id }}" value="0" />
-													<input type="checkbox" name="absence_{{ $event['event']->id }}" value="1" 
+													<input type="checkbox" name="absence_{{ $event['event']->id }}" value="1"
 													@if(isset($event['absence']))
 														checked="checked"
 													@endif

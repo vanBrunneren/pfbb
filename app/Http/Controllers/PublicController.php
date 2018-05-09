@@ -20,7 +20,10 @@ class PublicController extends Controller
     public function home()
     {
         $home = Home::first();
-        $events = Events::where('isExtern', '=', 1)->orderBy('date', 'desc')->limit(3)->get();
+        $events = Events::where([
+                ['isExtern', '=', 1],
+                ['date', '>', date('Y-m-d')]
+            ])->orderBy('date', 'asc')->limit(3)->get();
     	return view('public.home', compact('events', 'home'));
     }
 
