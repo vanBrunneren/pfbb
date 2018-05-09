@@ -36,7 +36,7 @@
             </div>
         </div>
         <div class="col-12 col-md-9 no-padding">
-            <img src="/images/Home_Image.jpg" class="img-fluid" />
+            <img class="img-fluid" src="{{ Storage::url($home->image) }}" />
         </div>
     </div>
 </div>

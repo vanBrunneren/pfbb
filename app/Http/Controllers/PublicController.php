@@ -13,13 +13,15 @@ use App\Links;
 use App\Videos;
 use App\Presse;
 use App\Repertoire;
+use App\Home;
 
 class PublicController extends Controller
 {
     public function home()
     {
-        $events = Events::where('isExtern', '=', 1)->limit(3)->get();
-    	return view('public.home', compact('events'));
+        $home = Home::first();
+        $events = Events::where('isExtern', '=', 1)->orderBy('date', 'desc')->limit(3)->get();
+    	return view('public.home', compact('events', 'home'));
     }
 
     public function history()

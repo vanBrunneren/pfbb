@@ -40,7 +40,6 @@ Route::middleware('auth')->group(function () {
 
 	Route::redirect('/admin', '/admin/index', 301);
 	Route::get('/admin/index', 'Admin\IndexController@index');
-	Route::get('/admin/home/index', 'Admin\HomeController@index')->name('admin_home');
 	Route::get('/admin/logout', 'Admin\HomeController@logout')->name('admin_logout');
 
 	Route::get('/admin/changepassword','Admin\UserController@showChangePasswordForm');
@@ -69,6 +68,9 @@ Route::middleware('auth')->group(function () {
 	});
 
 	Route::group(['middleware' => 'roles', 'roles' => ['editor', 'root']], function() {
+
+		Route::get('/admin/home/index', 'Admin\HomeController@index')->name('admin_home');
+		Route::post('/admin/home/index', 'Admin\HomeController@indexSave');
 
 		Route::redirect('/admin/band/mitglieder', '/admin/band/mitglieder/index', 301);
 		Route::redirect('/admin/band/repertoire', '/admin/band/repertoire/index', 301);
