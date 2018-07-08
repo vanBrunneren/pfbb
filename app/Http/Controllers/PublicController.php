@@ -152,7 +152,7 @@ class PublicController extends Controller
     public function contactSave(Request $request)
     {
 
-        if($request->input('email') && $request->input('message')) {
+        if($request->input('email') && $request->input('message') && !$request->input('honeypot')) {
 
             $message = "Name: \t".$request->input('name') . "<br>";
             $message .= "Vorname: \t".$request->input('prename') . "<br>";
@@ -167,8 +167,8 @@ class PublicController extends Controller
                 'Content-Type' => 'text/html; charset=UTF-8'
             );
 
-            //mail('pascal.brunner@gmx.ch', "PigFarmers Kontaktformular", $message, $header);
-            mail('studer@slp.ch', "Abmeldung PigFarmers", $message, $header);
+            mail('pascal.brunner@gmx.ch', "PigFarmers Kontaktformular", $message, $header);
+            mail('studer@slp.ch', "PigFarmers Kontaktformular", $message, $header);
 
         }
 
