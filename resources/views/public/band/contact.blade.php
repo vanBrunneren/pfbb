@@ -36,7 +36,7 @@
 			<div class="col-12">
 				<h4>Kontaktformular</h4>
 				<form action="" method="POST">
-					<input type="hidden" value="" name="honeypot" />
+					{!! Honeypot::generate('my_name', 'my_time') !!}
 					{{ csrf_field() }}
 					<div class="form-group">
 						<label for="sexInput">Anrede</label><br>

@@ -15,6 +15,8 @@ use App\Presse;
 use App\Repertoire;
 use App\Home;
 
+use Validator;
+
 class PublicController extends Controller
 {
     public function home()
@@ -152,7 +154,14 @@ class PublicController extends Controller
     public function contactSave(Request $request)
     {
 
-        if($request->input('email') && $request->input('message') && !$request->input('honeypot')) {
+        $rules = array(
+            'my_name'   => 'honeypot',
+            'my_time'   => 'required|honeytime:5'
+        );
+
+        $validator = Validator::make($request->all(), $rules);
+
+        if(!$validator->fails() && $request->input('email') && $request->input('message')) {
 
             $message = "Name: \t".$request->input('name') . "<br>";
             $message .= "Vorname: \t".$request->input('prename') . "<br>";

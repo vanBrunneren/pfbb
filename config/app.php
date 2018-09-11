@@ -180,6 +180,8 @@ return [
 
         Folklore\Image\ImageServiceProvider::class,
 
+        Msurguy\Honeypot\HoneypotServiceProvider::class
+
     ],
 
     /*
@@ -230,6 +232,8 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
 
         'Image' => Folklore\Image\Facades\Image::class,
+
+        'Honeypot' => Msurguy\Honeypot\HoneypotFacade::class
 
     ],
 

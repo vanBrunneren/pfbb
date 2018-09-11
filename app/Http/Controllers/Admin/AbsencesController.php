@@ -65,6 +65,7 @@ class AbsencesController extends Controller
 
             mail('pascal.brunner@gmx.ch', "Abmeldung PigFarmers", $message, $header);
             mail('studer@slp.ch', "Abmeldung PigFarmers", $message, $header);
+            mail('brunnerhp@gmx.ch', "Abmeldung PigFarmers", $message, $header);
 
             return redirect('admin/absenzen/index');
 

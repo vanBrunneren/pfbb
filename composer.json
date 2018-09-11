@@ -10,6 +10,7 @@
         "folklore/image": "0.3.*",
         "laravel/framework": "5.5.*",
         "laravel/tinker": "~1.0",
+        "msurguy/honeypot": "^1.0",
         "unisharp/laravel-ckeditor": "^4.7"
     },
     "require-dev": {
