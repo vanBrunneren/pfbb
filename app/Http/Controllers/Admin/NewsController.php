@@ -47,17 +47,19 @@ class NewsController extends Controller
             $news->text = $request->input('text');
             $news->date = $request->input('date');
 
-            $file = $request->file('file');
-            $path = $file->storeAs('/news', $file->getClientOriginalName(), 'public');
+            if($request->file) {
+                $file = $request->file('file');
+                $path = $file->storeAs('/news', $file->getClientOriginalName(), 'public');
 
-            $news->img = $path;
+                $news->img = $path;
+            }
             $news->save();
 
             return redirect(route('admin_news'));
 
         }
 
-        return view('admin.news.create', compact('news'));
+        return view('admin.news.edit', compact('news'));
         
     }
 

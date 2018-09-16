@@ -20,6 +20,7 @@
 					</p>
 				</div>
 			</div>
+			<hr style="margin-top: 40px; margin-bottom: 40px;">
 		@endforeach
 	</div>
 @endsection

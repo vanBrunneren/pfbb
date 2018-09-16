@@ -12,6 +12,10 @@
 					<br><br>
 				</div>
 				<div class="form-group">
+					<label for="name">Datum</label>
+					<input value="{{ $news->date }}" type="text" class="form-control" id="date" rows="6" name="date" />
+				</div>
+				<div class="form-group">
 					<label for="name">Text</label>
 					<textarea class="form-control" id="text" rows="6" name="text">{{ $news->text }}</textarea>
 				</div>
