@@ -14,6 +14,7 @@ use App\Videos;
 use App\Presse;
 use App\Repertoire;
 use App\Home;
+use App\News;
 
 use Validator;
 
@@ -183,6 +184,12 @@ class PublicController extends Controller
 
         return redirect(route('home'));
 
+    }
+
+    public function news() 
+    {
+        $news = News::orderBy('date', 'desc')->get();
+        return view('public.news', compact('news'));
     }
 
 }

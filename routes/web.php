@@ -69,8 +69,19 @@ Route::middleware('auth')->group(function () {
 
 	Route::group(['middleware' => 'roles', 'roles' => ['editor', 'root']], function() {
 
+		Route::get('/aktuelles', 'PublicController@news')->name('news');
+
 		Route::get('/admin/home/index', 'Admin\HomeController@index')->name('admin_home');
 		Route::post('/admin/home/index', 'Admin\HomeController@indexSave');
+
+		Route::get('/admin/news/index', 'Admin\NewsController@index')->name('admin_news');
+		Route::redirect('/admin/news', '/admin/news/index', 301);
+		Route::get('/admin/news/create', 'Admin\NewsController@create')->name('admin_news_create');
+		Route::post('/admin/news/create', 'Admin\NewsController@create')->name('admin_news_create_save');
+		Route::get('/admin/news/edit/{id}', 'Admin\NewsController@edit')->name('admin_news_edit');
+		Route::post('/admin/news/edit/{id}', 'Admin\NewsController@edit')->name('admin_news_edit_save');
+		Route::get('/admin/news/delete/{id}', 'Admin\NewsController@delete')->name('admin_news_delete');
+
 
 		Route::redirect('/admin/band/mitglieder', '/admin/band/mitglieder/index', 301);
 		Route::redirect('/admin/band/repertoire', '/admin/band/repertoire/index', 301);

@@ -10,6 +10,9 @@
                     Home<br>
                     <a href="{{ route('admin_home') }}">Home</a><br>
                     <hr>
+                    Aktuelles<br>
+                    <a href="{{ route('admin_news') }}">Aktuelles</a><br>
+                    <hr>
                     Band<br>
                     <a href="{{ route('admin_history') }}">Geschichte</a>
                     <a href="{{ route('admin_members') }}">Mitglieder</a>

@@ -17,6 +17,11 @@
 						<li class="nav-item">
 					  		<a class="nav-link" href="/">Home</a>
 						</li>
+						@if(Auth::user()->hasRole('editor') || Auth::user()->hasRole('root'))
+							<li class="nav-item">
+						  		<a class="nav-link" href="/aktuelles">Aktuelles</a>
+							</li>
+						@endif
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle">Band</a>
 					  		<div class="dropdown-menu">
@@ -49,9 +54,10 @@
 							<a class="nav-link dropdown-toggle" href="/intern">Intern</a>
 					  		<div class="dropdown-menu">
 								<a class="dropdown-item" href="/admin/index">Home</a>
+								<a class="dropdown-item" href="/admin/news/index">Aktuelles</a>
 								<a class="dropdown-item" href="/admin/user/index">Mitglieder</a>
-								<a class="dropdown-item" href="/admin/absenzen/index">Absenzen erfassen</a>
-								<a class="dropdown-item" href="/admin/absenzen/show">Absenzen anzeigen</a>
+								<a class="dropdown-item" href="/admin/absenzen/index">Abs. erfassen</a>
+								<a class="dropdown-item" href="/admin/absenzen/show">Abs. anzeigen</a>
 								<a class="dropdown-item" href="/admin/changepassword">Passwort ändern</a>
 								@if(Auth::user()->hasRole('editor') || Auth::user()->hasRole('root'))
 									<a class="dropdown-item" href="/admin/band">Band</a>

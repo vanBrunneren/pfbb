@@ -10,11 +10,16 @@ class HomeController extends Controller
 {
     public function index()
     {
-    	return view('admin.home.index');
+        $home = Home::first();
+    	return view('admin.home.index', compact('home'));
     }
 
     public function indexSave(Request $request)
     {
+
+        $home = Home::first();
+        $home->actual = $request->input('aktuelles');
+        $home->save();
 
         if($request->file('file')) {
             //$home = new Home();

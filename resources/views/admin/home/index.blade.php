@@ -6,6 +6,10 @@
         <div class="col-12">
             <form method="POST" action="" name="userForm" enctype="multipart/form-data">
 				{{ csrf_field() }}
+				<div class="form-group">
+					<label for="name">Aktuelles</label>
+					<textarea class="form-control" id="aktuelles" rows="6" name="aktuelles">{{ $home->actual ? $home->actual : '' }}</textarea>
+				</div>
                 <div class="form-group">
 					<label for="customFile">Bild ersetzen</label>
 					<div class="custom-file">
