@@ -11,12 +11,12 @@
 		@foreach($news as $n)
 			<div class="row">
 				<div class="col-6">
-					<img src="{{ Storage::url($news->img) }}" class="img-fluid" />
+					<img src="{{ Storage::url($n->img) }}" class="img-fluid" />
 				</div>
 				<div class="col-6">
-					<p>{{ $news->date }}</p>
+					<p>{{ $n->date }}</p>
 					<p>
-						{{ $news->text }}
+						{{ $n->text }}
 					</p>
 				</div>
 			</div>

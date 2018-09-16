@@ -11,7 +11,7 @@ class NewsController extends Controller
 {
     public function index()
     {
-    	$news = News::orderBy('date', 'desc')->get();
+    	$news = News::orderBy('created_at', 'desc')->get();
     	return view('admin.news.index', compact('news'));
     }
 
@@ -27,7 +27,7 @@ class NewsController extends Controller
             $file = $request->file('file');
             $path = $file->storeAs('/news', $file->getClientOriginalName(), 'public');
 
-            $news->imt = $path;
+            $news->img = $path;
             $news->save();
 
             return redirect(route('admin_news'));
@@ -50,7 +50,7 @@ class NewsController extends Controller
             $file = $request->file('file');
             $path = $file->storeAs('/news', $file->getClientOriginalName(), 'public');
 
-            $news->imt = $path;
+            $news->img = $path;
             $news->save();
 
             return redirect(route('admin_news'));

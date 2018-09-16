@@ -9,15 +9,19 @@
     </div>
     <div class="row">
         <div class="col-12 col-md-3 next-events">
-            <div>
-                <h3 class="home-subtitle">Aktuelles</h3>
-                <p>
-                    {{ $home->actual }}
-                    <p style="margin-top: 10px">
-                        Detailinformationen finden Sie unter der Rubrik <a href="/aktuelles" style="text-decoration: none; color: #000000">«Aktuelles»</a>
+            @if(Auth::check())
+                @if(Auth::user()->hasRole('editor') || Auth::user()->hasRole('root'))
+                <div>
+                    <h3 class="home-subtitle">Aktuelles</h3>
+                    <p>
+                        {{ $home->actual }}
+                        <p style="margin-top: 10px">
+                            Detailinformationen finden Sie unter der Rubrik <a href="/aktuelles" style="text-decoration: none; color: #000000">«Aktuelles»</a>
+                        </p>
                     </p>
-                </p>
-            </div>
+                </div>
+                @endif
+            @endif
             <div>
                 <h3 class="home-subtitle">Nächste Events</h3>
                 @foreach($events as $event)
