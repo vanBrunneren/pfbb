@@ -9,19 +9,15 @@
     </div>
     <div class="row">
         <div class="col-12 col-md-3 next-events">
-            @if(Auth::check())
-                @if(Auth::user()->hasRole('editor') || Auth::user()->hasRole('root'))
-                <div>
-                    <h3 class="home-subtitle">Aktuelles</h3>
-                    <p>
-                        {{ $home->actual }}
-                        <p style="margin-top: 10px">
-                            Detailinformationen finden Sie unter der Rubrik <a href="/aktuelles" style="text-decoration: none; color: #000000">«Aktuelles»</a>
-                        </p>
+            <div>
+                <h3 class="home-subtitle">Aktuelles</h3>
+                <p>
+                    {{ $home->actual }}
+                    <p style="margin-top: 10px">
+                        Detailinformationen finden Sie unter der Rubrik <a href="/aktuelles" style="text-decoration: none; color: #000000">«Aktuelles»</a>
                     </p>
-                </div>
-                @endif
-            @endif
+                </p>
+            </div>
             <div>
                 <h3 class="home-subtitle">Nächste Events</h3>
                 @foreach($events as $event)
@@ -44,13 +40,13 @@
                     <hr>
                 @endforeach
             </div>
-            <div class="button-container">
+            <div class="button-container" style="padding-bottom: 40px">
                 <a href="/events">
                     <button type="button" class="btn btn-primary">Alle Events</button>
                 </a>
             </div>
         </div>
-        <div class="col-12 col-md-9 no-padding">
+        <div class="col-12 col-md-9 ">
             <img class="img-fluid" src="{{ Storage::url($home->image) }}" />
         </div>
     </div>

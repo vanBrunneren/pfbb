@@ -63,7 +63,6 @@ class AbsencesController extends Controller
                 'Content-Type' => 'text/html; charset=UTF-8'
             );
 
-            mail('pascal.brunner@gmx.ch', "Abmeldung PigFarmers", $message, $header);
             mail('studer@slp.ch', "Abmeldung PigFarmers", $message, $header);
             mail('brunnerhp@gmx.ch', "Abmeldung PigFarmers", $message, $header);
 

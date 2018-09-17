@@ -135,9 +135,7 @@ class PublicController extends Controller
                         'Content-Type' => 'text/html; charset=UTF-8'
                     );
 
-                    mail('pascal.brunner@gmx.ch', "PigFarmers on Stage", $message, $header);
                     mail('studer@slp.ch', "Abmeldung PigFarmers", $message, $header);
-
 
                     $new_message = "Vielen Dank für Ihre Reservierung, diese wurde wie folgt an uns gesendet: <br><br>".$message;
                     mail($request->input('inputEmail'), "PigFarmers on Stage Reservierung", $new_message, $header);
@@ -188,7 +186,7 @@ class PublicController extends Controller
 
     public function news() 
     {
-        $news = News::orderBy('created_at', 'desc')->get();
+        $news = News::orderBy('created_at', 'desc')->limit(10)->get();
         return view('public.news', compact('news'));
     }
 

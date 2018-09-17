@@ -20,13 +20,9 @@
 						<li class="nav-item">
 					  		<a class="nav-link" href="/">Home</a>
 						</li>
-						@if(Auth::check())
-							@if(Auth::user()->hasRole('editor') || Auth::user()->hasRole('root'))
-							<li class="nav-item">
-						  		<a class="nav-link" href="/aktuelles">Aktuelles</a>
-							</li>
-							@endif
-						@endif
+						<li class="nav-item">
+					  		<a class="nav-link" href="/aktuelles">Aktuelles</a>
+						</li>
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle">Band</a>
 					  		<div class="dropdown-menu">

@@ -36,6 +36,8 @@ Route::get('/galerie/presse', 'PublicController@press')->name('press');
 Route::get('/links', 'PublicController@links')->name('links');
 Route::redirect('/intern', '/login');
 
+Route::get('/aktuelles', 'PublicController@news')->name('news');
+
 Route::middleware('auth')->group(function () {
 
 	Route::redirect('/admin', '/admin/index', 301);
@@ -68,8 +70,6 @@ Route::middleware('auth')->group(function () {
 	});
 
 	Route::group(['middleware' => 'roles', 'roles' => ['editor', 'root']], function() {
-
-		Route::get('/aktuelles', 'PublicController@news')->name('news');
 
 		Route::get('/admin/home/index', 'Admin\HomeController@index')->name('admin_home');
 		Route::post('/admin/home/index', 'Admin\HomeController@indexSave');
