@@ -17,7 +17,7 @@
 				</div>
 				<div class="form-group">
 					<label for="name">Text</label>
-					<textarea class="form-control" id="text" rows="6" name="text">{{ $news->text }}</textarea>
+					<textarea class="form-control" id="text" rows="6" name="text">{!! str_ireplace('<br />', '', $news->text) !!}</textarea>
 				</div>
 				<button type="submit" class="btn btn-primary">Speichern</button>
 			</form>

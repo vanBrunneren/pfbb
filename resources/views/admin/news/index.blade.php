@@ -31,7 +31,7 @@
                                     <img src="<?=Image::url('/storage/'.$n->img,100,100,array('crop'))?>" />
                                 </td>
     							<td>
-                                   <p>{{ $n->text }}</p>
+                                   <p>{!! $n->text !!}</p>
                                 </td>
     							<td class="list-icon-container">
 									<a class="list-icon" href="{{ route('admin_news_edit', $n->id) }}"><i class="fa fa-pencil" aria-hidden="true"></i></a>

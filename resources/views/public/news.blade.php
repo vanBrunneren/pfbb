@@ -11,12 +11,14 @@
 		@foreach($news as $n)
 			<div class="row">
 				<div class="col-6">
-					<img src="{{ Storage::url($n->img) }}" class="img-fluid" />
+					<a href="{{ Storage::url($n->img) }}" data-lightbox="{{ $n->id }}" data-title="">
+						<img src="{{ Storage::url($n->img) }}" class="img-fluid" />
+					</a>
 				</div>
 				<div class="col-6">
 					<p>{{ $n->date }}</p>
 					<p>
-						{{ $n->text }}
+						{!! $n->text !!}
 					</p>
 				</div>
 			</div>

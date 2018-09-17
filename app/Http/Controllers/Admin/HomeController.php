@@ -18,7 +18,7 @@ class HomeController extends Controller
     {
 
         $home = Home::first();
-        $home->actual = $request->input('aktuelles');
+        $home->actual = nl2br($request->input('aktuelles'));
         $home->save();
 
         if($request->file('file')) {

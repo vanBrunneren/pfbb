@@ -12,7 +12,7 @@
             <div>
                 <h3 class="home-subtitle">Aktuelles</h3>
                 <p>
-                    {{ $home->actual }}
+                    {!! $home->actual !!}
                     <p style="margin-top: 10px">
                         Detailinformationen finden Sie unter der Rubrik <a href="/aktuelles" style="text-decoration: none; color: #000000">«Aktuelles»</a>
                     </p>
@@ -47,7 +47,9 @@
             </div>
         </div>
         <div class="col-12 col-md-9 ">
-            <img class="img-fluid" src="{{ Storage::url($home->image) }}" />
+            <a href="{{ Storage::url($home->image) }}" data-lightbox="{{ $home->id }}" data-title="">
+                <img class="img-fluid" src="{{ Storage::url($home->image) }}" />
+            </a>
         </div>
     </div>
 </div>

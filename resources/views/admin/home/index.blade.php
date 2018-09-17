@@ -8,7 +8,7 @@
 				{{ csrf_field() }}
 				<div class="form-group">
 					<label for="name">Aktuelles</label>
-					<textarea class="form-control" id="aktuelles" rows="6" name="aktuelles">{{ $home->actual ? $home->actual : '' }}</textarea>
+					<textarea class="form-control" id="aktuelles" rows="6" name="aktuelles">{!! $home->actual ? str_ireplace('<br />', '', $home->actual) : '' !!}</textarea>
 				</div>
                 <div class="form-group">
 					<label for="customFile">Bild ersetzen</label>

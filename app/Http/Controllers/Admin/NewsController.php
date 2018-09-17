@@ -21,7 +21,7 @@ class NewsController extends Controller
         if($request->isMethod('post')) {
 
             $news = new News;
-            $news->text = $request->input('text');
+            $news->text = nl2br($request->input('text'));
             $news->date = $request->input('date');
 
             $file = $request->file('file');
@@ -44,7 +44,7 @@ class NewsController extends Controller
 
         if($request->isMethod('post')) {
 
-            $news->text = $request->input('text');
+            $news->text = nl2br($request->input('text'));
             $news->date = $request->input('date');
 
             if($request->file) {
